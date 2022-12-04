@@ -17,6 +17,7 @@ public AudioSource shootingSound;
     // Start is called before the first frame update
     void Start()
     {
+        ammoCount = maxAmmo;
         shootingSound= GetComponent<AudioSource>();
         noAmmoAudioSound = GetComponent<AudioSource>();
         reloadSound= GetComponent<AudioSource>();
