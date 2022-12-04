@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class VRShoot : MonoBehaviour
 {
-    public SimpleShoot simpleShoot;
     public GameObject barrel;
+    public SimpleShoot simpleShoot;
+    public int damage = 20;
+    public float impactForce = 20f;
     public OVRInput.Button shootButton;
 
     private OVRGrabbable grabbable;
@@ -38,6 +40,15 @@ public class VRShoot : MonoBehaviour
         if (Physics.Raycast(barrel.transform.position, barrel.transform.forward, out hit))
         {
             Debug.Log(hit.transform.name);
+            EnemyAI target = hit.transform.GetComponent<EnemyAI>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
+            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * impactForce);
+            }
         }
     }
 }

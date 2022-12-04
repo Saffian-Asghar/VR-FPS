@@ -20,17 +20,17 @@ public class itakedamage : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    // Start is called before the first frame update
+
     void OnCollisionEnter(Collision collision)
     {
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.tag == "bullet")
+        if (collision.gameObject.tag == "bullet" && this.gameObject.tag == "Player")
         {
             health = health - 20;
-            if(health <= 0)
+            if (health <= 0)
             {
-                Destroy(this.gameObject);
-                Debug.Log("Dead");
+                //Destroy(this.gameObject);
+                Debug.Log(this.gameObject.tag + "Dead");
 
             }
 
