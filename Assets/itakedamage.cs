@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class itakedamage : MonoBehaviour
 {
-    public int health = 100;
+    public float health = 100f;
+
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0f)
+        {
+
+            Die();
+        }
+    }
+    void Die()
+    {
+        Destroy(this.gameObject);
+    }
 
     // Start is called before the first frame update
     void OnCollisionEnter(Collision collision)

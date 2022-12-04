@@ -5,6 +5,7 @@ using UnityEngine;
 public class VRShoot : MonoBehaviour
 {
     public SimpleShoot simpleShoot;
+    public GameObject barrel;
     public OVRInput.Button shootButton;
 
     private OVRGrabbable grabbable;
@@ -15,6 +16,7 @@ public class VRShoot : MonoBehaviour
     {
         grabbable = GetComponent<OVRGrabbable>();
         audio = GetComponent<AudioSource>();
+        barrel = GetComponent<GameObject>();
 
     }
 
@@ -23,9 +25,19 @@ public class VRShoot : MonoBehaviour
     {
         if (grabbable.isGrabbed && OVRInput.GetDown(shootButton, grabbable.grabbedBy.GetController()))
         {
-            simpleShoot.StartShoot();
+            Shoot();
+            //simpleShoot.StartShoot();
             audio.Play();
         }
 
+    }
+
+    void Shoot()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(barrel.transform.position, barrel.transform.forward, out hit))
+        {
+            Debug.Log(hit.transform.name);
+        }
     }
 }
