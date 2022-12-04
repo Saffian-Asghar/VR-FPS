@@ -8,9 +8,10 @@ public class testShoot : MonoBehaviour
     public SimpleShoot simpleShoot;
     public int damage = 20;
     public float impactForce = 20f;
-public AudioSource shootingSound;
-    public AudioSource noAmmoAudioSound;
-    public AudioSource reloadSound;
+    public AudioSource audioSource;
+    public AudioClip shootingSound;
+    public AudioClip noAmmoAudioSound;
+    public AudioClip reloadSound;
     // for ammo count
     public int ammoCount;
     public int maxAmmo = 10;
@@ -18,9 +19,6 @@ public AudioSource shootingSound;
     void Start()
     {
         ammoCount = maxAmmo;
-        shootingSound= GetComponent<AudioSource>();
-        noAmmoAudioSound = GetComponent<AudioSource>();
-        reloadSound= GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,31 +27,31 @@ public AudioSource shootingSound;
 
         if (Input.GetKeyDown("r"))
         {
-reload();
+            reload();
         }
         if (Input.GetKeyDown("f"))
         {
             if (ammoCount > 0 )
             {
-            Shoot();
-            simpleShoot.StartShoot();
-            GetComponent<AudioSource>().Play();
-            shootingSound.Play();
-            ammoCount-=1;
-        }
-        else 
-        {
-noAmmoAudioSound.Play();
+                Shoot();
+                simpleShoot.StartShoot();
+                GetComponent<AudioSource>().Play();
+                audioSource.PlayOneShot(shootingSound, 80);
+                ammoCount-=1;
+            }
+            else 
+            {
+                audioSource.PlayOneShot(noAmmoAudioSound, 80);
 
-        }
+            }
         }
     }
 
-void reload()
-{
-ammoCount = maxAmmo;
-reloadSound.play();
-}
+    void reload()
+    {
+        ammoCount = maxAmmo;
+        audioSource.PlayOneShot(reloadSound, 80);
+    }
 
     void Shoot()
     {
