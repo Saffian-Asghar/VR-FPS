@@ -9,15 +9,23 @@ public class VRShoot : MonoBehaviour
     public int damage = 20;
     public float impactForce = 20f;
     public OVRInput.Button shootButton;
+    public OVRInput.Button reloadButton;
 
     private OVRGrabbable grabbable;
-    private AudioSource audio;
 
+
+    public AudioSource audioSource;
+    public AudioClip shootingSound;
+    public AudioClip noAmmoAudioSound;
+    public AudioClip reloadSound;
+    // for ammo count
+    public int ammoCount;
+    public int maxAmmo = 10;
     // Start is called before the first frame update
     void Start()
     {
+        ammoCount = maxAmmo;
         grabbable = GetComponent<OVRGrabbable>();
-        audio = GetComponent<AudioSource>();
         barrel = GetComponent<GameObject>();
 
     }
@@ -25,15 +33,39 @@ public class VRShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (grabbable.isGrabbed && OVRInput.GetDown(shootButton, grabbable.grabbedBy.GetController()))
+        if (grabbable.isGrabbed)
         {
-            Shoot();
-            //simpleShoot.StartShoot();
-            audio.Play();
+            if (OVRInput.GetDown(shootButton, grabbable.grabbedBy.GetController()))
+            {
+                if (ammoCount > 0)
+                {
+                    Shoot();
+                    simpleShoot.StartShoot();
+                    GetComponent<AudioSource>().Play();
+                    audioSource.PlayOneShot(shootingSound, 80);
+                    ammoCount -= 1;
+                }
+                else
+                {
+                    audioSource.PlayOneShot(noAmmoAudioSound, 80);
+
+                }
+
+            }
+            if (OVRInput.GetDown(reloadButton, grabbable.grabbedBy.GetController()))
+            {
+                reload();
+
+            }
+            
         }
 
     }
-
+    void reload()
+    {
+        ammoCount = maxAmmo;
+        audioSource.PlayOneShot(reloadSound, 80);
+    }
     void Shoot()
     {
         RaycastHit hit;
