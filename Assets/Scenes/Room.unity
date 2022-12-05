@@ -1865,7 +1865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8565972283275330997, guid: 7e7f2840eb6a6294fb9d04582dbf8079, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.421
+      value: -19.96
       objectReference: {fileID: 0}
     - target: {fileID: 8565972283275330997, guid: 7e7f2840eb6a6294fb9d04582dbf8079, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1873,7 +1873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8565972283275330997, guid: 7e7f2840eb6a6294fb9d04582dbf8079, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.738
+      value: -11.43
       objectReference: {fileID: 0}
     - target: {fileID: 8565972283275330997, guid: 7e7f2840eb6a6294fb9d04582dbf8079, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2078,11 +2078,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbd12cdc654053408c69825cad4c63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrel: {fileID: 437096371}
   simpleShoot: {fileID: 578467438}
   damage: 20
   impactForce: 20
   shootButton: 8192
+  reloadButton: 0
+  audioSource: {fileID: 1792841001}
+  shootingSound: {fileID: 8300000, guid: ac2ebdb4b8349364f95364ba7ad61e4e, type: 3}
+  noAmmoAudioSound: {fileID: 8300000, guid: b91ac28f5a0dfd242ae3ffa3850e3cce, type: 3}
+  reloadSound: {fileID: 8300000, guid: cae2af9c7978bfb4b8da256b10b76e9b, type: 3}
+  ammoCount: 0
+  maxAmmo: 10
 --- !u!114 &1792841003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2678,8 +2684,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.169219, z: 1}
-  m_Center: {x: 0, y: -0.10653484, z: 0}
+  m_Size: {x: 0.7218609, y: 2.169219, z: 0.153059}
+  m_Center: {x: 0.031392097, y: -0.10653484, z: -0.07526779}
 --- !u!4 &2139574660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4471613377008970, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}

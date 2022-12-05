@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VRShoot : MonoBehaviour
 {
-    public GameObject barrel;
+    private GameObject barrel;
     public SimpleShoot simpleShoot;
     public int damage = 20;
     public float impactForce = 20f;
@@ -26,7 +26,7 @@ public class VRShoot : MonoBehaviour
     {
         ammoCount = maxAmmo;
         grabbable = GetComponent<OVRGrabbable>();
-        barrel = GetComponent<GameObject>();
+        barrel = this.gameObject.transform.GetChild(0).gameObject;
 
     }
 
@@ -52,7 +52,7 @@ public class VRShoot : MonoBehaviour
                 }
 
             }
-            if (OVRInput.GetDown(reloadButton, grabbable.grabbedBy.GetController()))
+            if (OVRInput.GetDown(OVRInput.Button.One, grabbable.grabbedBy.GetController()))
             {
                 reload();
 
