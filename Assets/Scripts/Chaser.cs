@@ -36,6 +36,10 @@ public class Chaser : MonoBehaviour
 		float distance = Vector3.Distance(transform.position, target.position);
 		if (distance > minDist)
 			transform.position += transform.forward * speed * Time.deltaTime;
+        else
+        {
+			target.position += transform.forward * speed * Time.deltaTime;
+        }
 	}
 
 	// Set the target of the chaser

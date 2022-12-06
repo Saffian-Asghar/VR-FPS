@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class itakedamage : MonoBehaviour
 {
-    public int health = 100;
+    public float health = 100f;
 
-    // Start is called before the first frame update
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0f)
+        {
+
+            Die();
+        }
+    }
+    void Die()
+    {
+        Destroy(this.gameObject);
+    }
+
+
     void OnCollisionEnter(Collision collision)
     {
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.tag == "bullet")
+        if (collision.gameObject.tag == "bullet" && this.gameObject.tag == "Player")
         {
             health = health - 20;
-            if(health <= 0)
+            if (health <= 0)
             {
-                Destroy(this.gameObject);
-                Debug.Log("Dead");
+                //Destroy(this.gameObject);
+                Debug.Log(this.gameObject.tag + "Dead");
 
             }
 
