@@ -7,6 +7,8 @@ public class MenuController : MonoBehaviour
 {
     public void StartBtn()
     {
+        Debug.Log("I am here");
+        SceneManager.UnloadScene("MainMenu");
         SceneManager.LoadScene("Room");
     }
 
