@@ -105,7 +105,14 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        try{
+
+             agent.SetDestination(player.position);
+        }
+        catch
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void Patrolling()
